@@ -1,0 +1,4 @@
+$ makeblastdb -in egfr.fasta -dbtype nucl -out mydb
+$ megablast -i 4-Cr23.fa -d mydb -o 4_result.txt -e 1e-8 -m 8 -a 8
+#-m 8 no title    -a 8   8个线程。  -e 1e-8 evalue
+#add title  qseqid	sseqid	pident	length	mismatch	gapopen	qstart	qend	sstart	send	evalue	bitscore
