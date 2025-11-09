@@ -2,3 +2,16 @@ $ makeblastdb -in egfr.fasta -dbtype nucl -out mydb
 $ megablast -i 4-Cr23.fa -d mydb -o 4_result.txt -e 1e-8 -m 8 -a 8
 #-m 8 no title    -a 8   8个线程。  -e 1e-8 evalue
 #add title  qseqid	sseqid	pident	length	mismatch	gapopen	qstart	qend	sstart	send	evalue	bitscore
+$ makeblastdb -in egfr.fasta -dbtype nucl
+Building a new DB, current time: 11/08/2025 17:54:00
+New DB name:   /home/hp/nanjing01/egfr_dna/igv/egfr.fasta
+New DB title:  egfr.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 1000000000B
+Adding sequences from FASTA; added 1 sequences in 0.00118804 seconds.
+$ blastn -query 4_Cr2301.fa -db egfr.fasta -outfmt 6 -out 4_aln.txt
+$ python blast2sam.py
+$ samtools view -Sb 4_aln.sam >4_aln.bam
+$ samtools sort 4_aln.bam  -o 4_aln.sorted.bam
+$ samtools index 4_aln.sorted.bam
