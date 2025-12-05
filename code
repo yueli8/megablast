@@ -33,3 +33,10 @@ blastn -task blastn-short \
 -word_size 4：让它愿意从很小的匹配起步（默认会太大，根本不报）
 -dust no：关闭低复杂度过滤，短探针常用
 即便这样，大概率你也只会看到 5bp 这种非常短的命中，实际意义不大。
+
+
+
+
+如果你只是想看看 有没有完全一致的 20bp 出现，比 BLAST 更直接的是：
+
+grep -n "ACATCTTCTTTCATGCGCCT" 4_raw_mapping_egfr_1e-8.fa
