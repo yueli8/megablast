@@ -18,11 +18,20 @@ $ samtools index 4_aln.sorted.bam
 #比较短序列片段，简单用法：不用建库，直接比对两文件
 #如果你已经安装的是 NCBI BLAST+（没有独立 megablast 命令，只有 blastn），可以用：
 
+用 blastn 的短序列模式，而不是 megablast
+
+对这种 20bp 左右的短序列，用：
+
 blastn -task blastn-short \
   -query acatcttctttcatgcgcct.fa \
-  -subject 4_raw_mapping_egfr_1e-8.fa \
+  -db egfr_db \
   -outfmt 6 \
   -evalue 1000 \
   -word_size 4 \
   -dust no \
   -out result.txt
+
+-task blastn-short：专门用于短序列
+-word_size 4：让它愿意从很小的匹配起步（默认会太大，根本不报）
+-dust no：关闭低复杂度过滤，短探针常用
+即便这样，大概率你也只会看到 5bp 这种非常短的命中，实际意义不大。
