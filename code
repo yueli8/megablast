@@ -17,9 +17,7 @@ $ samtools sort 4_aln.bam  -o 4_aln.sorted.bam
 $ samtools index 4_aln.sorted.bam
 #比较短序列片段，简单用法：不用建库，直接比对两文件
 #如果你已经安装的是 NCBI BLAST+（没有独立 megablast 命令，只有 blastn），可以用：
-
 用 blastn 的短序列模式，而不是 megablast
-
 对这种 20bp 左右的短序列，用：
 
 blastn -task blastn-short \
